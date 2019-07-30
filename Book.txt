@@ -1,3 +1,4 @@
+5(a)
 
 #include <iostream>
 #include <fstream>
@@ -143,4 +144,28 @@ int main()
     
 
     return 0;
+}
+
+5(b)
+
+#include <iostream.h>
+// m & n are known.
+
+main()
+{
+    int i = m-1, j = 0,   k = 0;
+
+    while (i >= 0  &&  j <= n-1) {
+         if (A[i] > B[j])   C[k++] = A[i--] ;
+         else    C[k++] = B[j++] ;
+    }
+   while (i >= 0) 
+          C[k++] = A[i--] ;
+
+   while (j < n) 
+          C[k++] = B[j++] ;
+
+   i = 0;
+   while (i < m+n) 
+        cout << C[i] ;
 }
