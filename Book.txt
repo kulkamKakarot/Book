@@ -1,0 +1,153 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+#include <fstream>
+
+using namespace std;
+
+class book 
+{ 
+    
+    int Book_no;
+    char Book_Title[20];
+    float Book_price;
+    char Author[20];
+    int Publishing_date;
+    float Bill_amt;
+    
+    // Access specifier 
+    public: 
+    
+    void Total_cost(int n)
+	{
+		float total_cost;
+		tcost=Book_price*;
+		cout<<total_cost;
+	}
+
+    
+    void Input()
+	{
+	    int n;
+		cout<<"Enter Book Number: \t\n";
+		cin>>Book_no;
+		cout<<"Enter Book Title: \t\n";
+		cin>>Book_Title;
+		cout<<"Enter Book_price: \t\n";
+		cin>>Book_price;
+		cout<<"Enter Auhtor's name: \t\n";
+		cin>>Author;
+		cout<<"Enter Publishing_date: \t\n";
+		cin>>Publishing_date;
+		cout<<"Enter Number of Books: \t\n";
+		cin>>n;
+	}
+	
+	void Display()
+	{
+	    cout<<"\nBook Number: "<<*Book_no;
+	    cout<<"\ntitle: "<<Book_Title;
+	    cout<<"\nprice: "<<*Book_price;
+	    cout<<"\nauthor: "<<Author;
+	    cout<<"\nPublishing Date: "<<Publishing_date;
+	}
+	
+	void Delete()
+    {
+
+     string line, b_name;
+    cout << "Enter the name of Book you want to delete: ";
+    cin >> b_name;
+    ifstream myfile;
+    ofstream temp;
+    myfile.open("book.txt");
+    temp.open("temp.txt");
+    while (getline(myfile, line))
+    {
+        if (line != b_name)
+         temp << line << endl;
+    }
+    cout << "The book " << b_name << " has been deleted" << endl;
+    myfile.close();
+    temp.close();
+    remove("book.txt");
+    rename("temp.txt", "book.txt");
+    }
+    
+    void Update()
+    {
+     string input;
+     ifstream fin;
+     ofstream fout;
+     string title,author,PublishingDate;
+     float price;
+    
+     fin.open("book.txt");
+        
+     cout << "Title: " ;
+	 getline(cin, input); 
+	 fout.open("library.txt", ios::app | ios::out);
+	
+     while(!fin.eof())
+     {
+        fin >> title >> author >> PublishingDate >> price;
+        if (title == input)
+           {
+            cout << "1) Update Author" << endl;
+            cout << "2) Update Price"  << endl;
+            cout << "3) Update Title"  << endl;
+            cout << "4) Update PublishingDate"  << endl;
+            cout << "Please input your subchoice: ";
+            getline(cin, input);
+            
+            
+            if(input == "1")
+             {
+                     cout << "New Author : ";
+    	             getline(cin, input);
+                     author = input;   
+                     fout<< title << '\t' << author << '\t' << PublishingDate << '\t' << price ;           
+             }
+            if(input == "2")
+             {
+                     cout << "New Price : ";
+    	             getline(cin, input); 
+    	             istringstream strPrice(input);
+                     strPrice >> price;
+                     fout<< title << '\t' << author << '\t' << PublishingDate << '\t' << price ; 
+             }
+             if(input == "3")
+             {
+                     cout << "New Title : ";
+    	             getline(cin, input); 
+    	             istringstream strTitle(input);
+                     strTitle >> Title;
+                     fout<< title << '\t' << author << '\t' << PublishingDate << '\t' << price ; 
+             }
+             if(input == "2")
+             {
+                     cout << "New PublishingDate : ";
+    	             getline(cin, input); 
+    	             istringstream strPublishingDate(input);
+                     strPublishingDate >> PublishingDate;
+                     fout<< title << '\t' << author << '\t' << PublishingDate << '\t' << price ; 
+             }
+                     
+           }     
+	}
+    }
+	
+};   
+ 
+int main()
+{
+    
+
+    return 0;
+}
